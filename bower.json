@@ -1,0 +1,17 @@
+{
+  "name": "hn_php_naitei_library",
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/hadomanh/hn_php_naitei_library",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "admin-lte": "^3.1.0"
+  }
+}
