@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublisherController;
 use Illuminate\Support\Facades\Auth;
@@ -34,5 +35,6 @@ Route::prefix('admin')->group(function() {
         Route::prefix('publisher')->group(function () {
             Route::get('/', [PublisherController::class, 'index'])->name('publisher.index')->middleware('auth');
         });
+        Route::resource('book', BookController::class)->except(['destroy']);
     });
 });

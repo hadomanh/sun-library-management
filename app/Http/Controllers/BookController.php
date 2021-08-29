@@ -2,11 +2,27 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Book;
+use App\Models\Category;
+use App\Models\Publisher;
 use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
+    private $book;
+    private $publisher;
+    private $category;
+    private $author;
+
+    public function __construct(Book $book, Publisher $publisher, Category $category, Author $author)
+    {
+        $this->book = $book;
+        $this->publisher = $publisher;
+        $this->category = $category;
+        $this->author = $author;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +30,9 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = $this->book->all();
+
+        return view('book.index')->with(compact('books'));
     }
 
     /**
@@ -24,7 +42,10 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $publishers = $this->publisher->all();
+        $categories = $this->category->all();
+
+        return view('book.create')->with(compact('publishers', 'categories'));
     }
 
     /**
@@ -35,7 +56,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $book = new Book;
+        $book->title = $request->title;
+        $book->number_of_pages = $request->number_of_pages;
+        $book->quantity = $request->quantity;
+        $book->publisher_id = $request->publisher_id;
+        $book->save();
+        $book->refresh();
+        $book->categories()->attach($request->categories);
+
+        return $this->index();
     }
 
     /**
@@ -57,7 +87,11 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $publishers = $this->publisher->all();
+        $categories = $this->category->all();
+        $authors = $this->author->all();
+
+        return view('book.edit')->with(compact('book', 'publishers', 'categories', 'authors'));
     }
 
     /**
@@ -69,17 +103,19 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $book->title = $request->title;
+        $book->number_of_pages = $request->number_of_pages;
+        $book->quantity = $request->quantity;
+        $book->publisher_id = $request->publisher_id;
+        $book->categories()->sync($request->categories);
+        $book->save();
+
+        return redirect(route('book.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Book  $book
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Book $book)
+    public function destroy($id)
     {
-        //
+        return $this->book->findOrFail($id)->delete();
+
     }
 }

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublisherController;
 use Illuminate\Http\Request;
@@ -28,5 +29,9 @@ Route::prefix('category')->group(function () {
 Route::prefix('publisher')->group(function () {
     Route::post('/', [PublisherController::class, 'create'])->name('api.publisher.create');
     Route::delete('/{id}', [PublisherController::class, 'delete'])->name('api.publisher.delete');
+});
+
+Route::prefix('book')->group(function () {
+    Route::delete('/{id}', [BookController::class, 'destroy'])->name('api.book.destroy');
 });
 
