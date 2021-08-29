@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PublisherController;
@@ -33,5 +34,9 @@ Route::prefix('publisher')->group(function () {
 
 Route::prefix('book')->group(function () {
     Route::delete('/{id}', [BookController::class, 'destroy'])->name('api.book.destroy');
+});
+
+Route::prefix('author')->group(function () {
+    Route::delete('/{id}', [AuthorController::class, 'destroy'])->name('api.author.destroy');
 });
 

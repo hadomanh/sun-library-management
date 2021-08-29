@@ -3,10 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class AuthorController extends Controller
 {
+    private $author;
+    private $book;
+
+    public function __construct(Author $author, Book $book) {
+        $this->author = $author;
+        $this->book = $book;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +23,9 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+        $authors = $this->author->all();
+
+        return view('author.index')->with(compact('authors'));
     }
 
     /**
@@ -24,7 +35,9 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        $books = $this->book->all();
+
+        return view('author.create')->with(compact('books'));
     }
 
     /**
@@ -35,7 +48,12 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $author = new Author;
+        $author->name = $request->name;
+        $author->book_id = $request->book_id;
+        $author->save();
+
+        return redirect(route('author.index'));
     }
 
     /**
@@ -57,7 +75,9 @@ class AuthorController extends Controller
      */
     public function edit(Author $author)
     {
-        //
+        $books = $this->book->all();
+
+        return view('author.edit')->with(compact('author', 'books'));
     }
 
     /**
@@ -69,7 +89,11 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $author->name = $request->name;
+        $author->book_id = $request->book_id;
+        $author->save();
+
+        return redirect(route('author.index'));
     }
 
     /**
@@ -78,8 +102,8 @@ class AuthorController extends Controller
      * @param  \App\Models\Author  $author
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Author $author)
+    public function destroy($id)
     {
-        //
+        return $this->author->findOrFail($id)->delete();
     }
 }

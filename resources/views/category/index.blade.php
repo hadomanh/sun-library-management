@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id="deleteConfirm" type="button" class="btn btn-danger">Delete permanently</button>
+          <button id="deleteConfirm" type="button" class="btn btn-danger">">{{ __('Delete permanently') }}</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -55,8 +55,8 @@
         <thead>
           <tr>
             <th style="width: 10px">#</th>
-            <th>Name</th>
-            <th>Books</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('Books') }}</th>
             <th></th>
           </tr>
         </thead>
@@ -67,12 +67,12 @@
                     <td>{{ $category->name }}</td>
                     <td>
                       @foreach ($category->books as $book)
-                          <a href="#" class="btn btn-outline-primary">{{ $book->title }}</a>
+                        <a href="{{ route('book.index') }}" class="btn btn-outline-primary">{{ $book->title }}</a>
                       @endforeach
                     </td>
                     <td>
                         <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.category.delete', $category->id) }}" data-toggle="modal" data-target="#modal-default">
-                          <i class="fas fa-trash"></i> Delete
+                          <i class="fas fa-trash"></i> {{ __('Delete') }}
                         </div>
                     </td>
                 </tr>

@@ -5,14 +5,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Confirm delete?</h4>
+          <h4 class="modal-title">{{ __('Confirm delete?') }}</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id="deleteConfirm" type="button" class="btn btn-danger">Delete permanently</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Cancel') }}</button>
+          <button id="deleteConfirm" type="button" class="btn btn-danger">">{{ __('Delete permanently') }}</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -23,7 +23,7 @@
 
   <div class="card">
     <div class="card-header">
-      <h3 class="card-title">Expandable Table</h3>
+      <h3 class="card-title">{{ __('Books') }}</h3>
     </div>
     <!-- ./card-header -->
     <div class="card-body">
@@ -31,9 +31,9 @@
         <thead>
           <tr>
             <th>#</th>
-            <th>Title</th>
-            <th>Number of pages</th>
-            <th>Quantity</th>
+            <th>{{ __('Title') }}</th>
+            <th>{{ __('Number of pages') }}</th>
+            <th>{{ __('Quantity') }}</th>
             <th></th>
           </tr>
         </thead>
@@ -45,22 +45,29 @@
                 <td>{{ $book->number_of_pages}}</td>
                 <td>{{ $book->quantity }}</td>
                 <td>
-                  <a href="{{ route('book.edit', $book->id) }}" class="btn btn-warning">Edit</a>
+                  <a href="{{ route('book.edit', $book->id) }}" class="btn btn-outline-warning">
+                    <i class="fas fa-edit"></i> 
+                    {{ __('Edit') }}
+                  </a>
                   
-                  <div class="btn btn-danger deleteItemBtn" data-url="{{ route('api.book.destroy', $book->id) }}" data-toggle="modal" data-target="#modal-default">Delete</div>
+                  <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.book.destroy', $book->id) }}" data-toggle="modal" data-target="#modal-default">
+                    <i class="fas fa-trash"></i> 
+                    {{ __('Delete') }}
+                  </div>
+
                 </td>
               </tr>
               <tr class="expandable-body">
                 <td colspan="5">
                     <p>
-                      <b>Categories: </b>
+                      <b>{{ __('Categories') }}: </b>
                       @foreach ($book->categories as $category)
-                          <a class="btn btn-outline-primary">{{ $category->name }}</a>
+                          <a href="{{ route('category.index') }}" class="btn btn-outline-primary">{{ $category->name }}</a>
                       @endforeach
-                    <br>
-                      <b>Authors: </b>
+                    <br><br>
+                      <b>{{ __('Authors') }}: </b>
                       @foreach ($book->authors as $author)
-                          <a class="btn btn-outline-warning">{{ $author->name }}</a>
+                          <a href="{{ route('author.index') }}" class="btn btn-outline-warning">{{ $author->name }}</a>
                       @endforeach
                     </p>
                 </td>

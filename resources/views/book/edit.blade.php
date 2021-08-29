@@ -14,7 +14,7 @@
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
-                <label>Title:</label>
+                <label>{{ __('Title') }}:</label>
                 <input type="text" name="title" class="form-control" placeholder="Title ..." value="{{ $book->title }}" required>
               </div>
             </div>
@@ -22,7 +22,7 @@
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
-                <label>Number of pages:</label>
+                <label>{{ __('Number of pages') }}:</label>
                 <input type="number" name="number_of_pages" class="form-control" placeholder="Number of pages ..." value="{{ $book->number_of_pages }}" required>
               </div>
             </div>
@@ -30,7 +30,7 @@
             <div class="col-sm-4">
               <!-- text input -->
               <div class="form-group">
-                <label>Quantity:</label>
+                <label>{{ __('Quantity') }}:</label>
                 <input type="number" name="quantity" class="form-control" placeholder="Quantity ..." value="{{ $book->quantity }}" required>
               </div>
             </div>
@@ -40,7 +40,8 @@
           <div class="col-sm-4">
             <!-- checkbox -->
             <div class="form-group">
-                <label>Authors:</label>
+                <label>{{ __('Authors') }}:</label>
+
                 @foreach ($authors as $author)
                     <div class="custom-control custom-checkbox">
                       @if (array_search($author->id, array_column($book->authors->toArray(), 'id')) !== false)
@@ -57,7 +58,8 @@
           <div class="col-sm-4">
             <!-- checkbox -->
             <div class="form-group">
-                <label>Categories:</label>
+                <label>{{ __('Categories') }}:</label>
+
                 @foreach ($categories as $category)
                     <div class="custom-control custom-checkbox">
                       @if (array_search($category->id, array_column($book->categories->toArray(), 'id')) !== false)
@@ -74,7 +76,8 @@
           <div class="col-sm-4">
             <!-- radio -->
             <div class="form-group">
-                <label>Publishers:</label>
+                <label>{{ __('Publishers') }}:</label>
+
                 @foreach ($publishers as $publisher)
                     <div class="custom-control custom-radio">
                       @if ($book->publisher_id == $publisher->id)
@@ -92,7 +95,7 @@
 
         <div class="row">
             <div class="col-3"></div>
-            <button class="btn btn-primary col-6" type="submit">Submit</button>
+            <button class="btn btn-primary col-6" type="submit">{{ __('Submit') }}</button>
         </div>
 
       </form>

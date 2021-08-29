@@ -33,7 +33,7 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="index3.html" class="nav-link">Home</a>
+        <a href="{{ route('home') }}" class="nav-link">Home</a>
       </li>
     </ul>
     @guest
@@ -70,7 +70,7 @@
   <!-- Main Sidebar Container -->
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link">
+    <a href="#" class="brand-link">
       <img src="/bower_components/admin-lte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">Library management</span>
     </a>
@@ -92,20 +92,12 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-          <li class="nav-item">
-            <a href="{{ route('category.index') }}" class="nav-link active">
-              <i class="nav-icon fas fa-box"></i>
-              <p>
-                Category
-              </p>
-            </a>
-          </li>
 
           <li class="nav-item">
             <a href="{{ route('publisher.index') }}" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
-                Publisher
+                {{ __('Publisher') }}
               </p>
             </a>
           </li>
@@ -114,7 +106,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-book"></i>
               <p>
-                Book
+                {{ __('Book') }}
                 <i class="right fas fa-angle-left"></i>
               </p>
             </a>
@@ -122,16 +114,49 @@
               <li class="nav-item">
                 <a href="{{ route('book.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>View</p>
+                  <p>{{ __('View') }}</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('book.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Add</p>
+                  <p>{{ __('Add') }}</p>
                 </a>
               </li>
             </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-book"></i>
+              <p>
+                {{ __('Author') }}
+                <i class="right fas fa-angle-left"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('author.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ __('View') }}</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('author.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>{{ __('Add') }}</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="nav-item">
+            <a href="{{ route('category.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-box"></i>
+              <p>
+                {{ __('Category') }}
+              </p>
+            </a>
           </li>
 
         </ul>
@@ -172,10 +197,9 @@
 
   <!-- Main Footer -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-    All rights reserved.
+    <strong>&copy; 2021 promoted.</strong> All rights reserved.
     <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 3.1.0
+      <b>Design by</b> hadm
     </div>
   </footer>
 </div>
