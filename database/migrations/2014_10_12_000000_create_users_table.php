@@ -21,9 +21,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('phone')->nullable();
             $table->string('avatar')->nullable();
-            $table->tinyInteger('is_admin');
-            $table->tinyInteger('is_blocked');
-            $table->rememberToken();
+            $table->tinyInteger('is_admin')->default(0);
+            $table->tinyInteger('is_blocked')->default(0);
+            $table->rememberToken()->nullable();
             $table->timestamps();
         });
     }
