@@ -1,5 +1,10 @@
 window.addEventListener('load', () => {
     handleDelete()
+
+    document.getElementById('logout')?.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.getElementById('logout-form').submit();
+    });
 })
 
 function handleDelete() {
