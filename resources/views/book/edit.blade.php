@@ -7,7 +7,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <form action="{{ route('book.update', $book->id) }}" method="POST" autocomplete="off">
+      <form action="{{ route('books.update', $book->id) }}" method="POST" autocomplete="off">
         @csrf
         @method('PUT')
         <div class="row">
@@ -45,11 +45,11 @@
                 @foreach ($authors as $author)
                     <div class="custom-control custom-checkbox">
                       @if (array_search($author->id, array_column($book->authors->toArray(), 'id')) !== false)
-                        <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}" checked>
+                        <input class="custom-control-input" type="checkbox" id="{{ 'authorCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}" checked>
                       @else
-                        <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}">
+                        <input class="custom-control-input" type="checkbox" id="{{ 'authorCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}">
                       @endif
-                        <label for="{{ 'customCheckbox' . $author->id }}" class="custom-control-label">{{ $author->name }}</label>
+                        <label for="{{ 'authorCheckbox' . $author->id }}" class="custom-control-label">{{ $author->name }}</label>
                     </div>
                 @endforeach
             </div>
@@ -63,11 +63,11 @@
                 @foreach ($categories as $category)
                     <div class="custom-control custom-checkbox">
                       @if (array_search($category->id, array_column($book->categories->toArray(), 'id')) !== false)
-                        <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}" checked>
+                        <input class="custom-control-input" type="checkbox" id="{{ 'categoryCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}" checked>
                       @else
-                        <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}">
+                        <input class="custom-control-input" type="checkbox" id="{{ 'categoryCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}">
                       @endif
-                        <label for="{{ 'customCheckbox' . $category->id }}" class="custom-control-label">{{ $category->name }}</label>
+                        <label for="{{ 'categoryCheckbox' . $category->id }}" class="custom-control-label">{{ $category->name }}</label>
                     </div>
                 @endforeach
             </div>

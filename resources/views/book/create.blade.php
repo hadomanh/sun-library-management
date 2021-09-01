@@ -7,7 +7,7 @@
     </div>
     <!-- /.card-header -->
     <div class="card-body">
-      <form action="{{ route('book.store') }}" method="POST" autocomplete="off">
+      <form action="{{ route('books.store') }}" method="POST" autocomplete="off">
         @csrf
         <div class="row">
             <div class="col-sm-4">
@@ -36,19 +36,33 @@
         </div>
 
         <div class="row">
-          <div class="col-sm-6">
+          <div class="col-sm-4">
+            <!-- checkbox -->
+            <div class="form-group">
+                <label>{{ __('Authors') }}:</label>
+                @foreach ($authors as $author)
+                    <div class="custom-control custom-checkbox">
+                        <input class="custom-control-input" type="checkbox" id="{{ 'authorCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}">
+                        <label for="{{ 'authorCheckbox' . $author->id }}" class="custom-control-label">{{ $author->name }}</label>
+                    </div>
+                @endforeach
+            </div>
+          </div>
+
+          <div class="col-sm-4">
             <!-- checkbox -->
             <div class="form-group">
                 <label>{{ __('Categories') }}:</label>
                 @foreach ($categories as $category)
                     <div class="custom-control custom-checkbox">
-                        <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}">
-                        <label for="{{ 'customCheckbox' . $category->id }}" class="custom-control-label">{{ $category->name }}</label>
+                        <input class="custom-control-input" type="checkbox" id="{{ 'categoryCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}">
+                        <label for="{{ 'categoryCheckbox' . $category->id }}" class="custom-control-label">{{ $category->name }}</label>
                     </div>
                 @endforeach
             </div>
           </div>
-          <div class="col-sm-6">
+
+          <div class="col-sm-4">
             <!-- radio -->
             <div class="form-group">
                 <label>{{ __('Publishers') }}:</label>
@@ -69,7 +83,7 @@
         <br>
         <div class="row">
             <div class="col-3"></div>
-            <a class="btn btn-outline-secondary col-6" href="{{ route('book.index') }}">{{ __('Cancel') }}</a>
+            <a class="btn btn-outline-secondary col-6" href="{{ route('books.index') }}">{{ __('Cancel') }}</a>
         </div>
 
       </form>

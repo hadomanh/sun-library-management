@@ -50,10 +50,9 @@ class AuthorController extends Controller
     {
         $author = new Author;
         $author->name = $request->name;
-        $author->book_id = $request->book_id;
         $author->save();
 
-        return redirect(route('author.index'));
+        return redirect(route('authors.index'));
     }
 
     /**
@@ -90,10 +89,10 @@ class AuthorController extends Controller
     public function update(Request $request, Author $author)
     {
         $author->name = $request->name;
-        $author->book_id = $request->book_id;
+        $author->books()->sync($request->books);
         $author->save();
 
-        return redirect(route('author.index'));
+        return redirect(route('authors.index'));
     }
 
     /**

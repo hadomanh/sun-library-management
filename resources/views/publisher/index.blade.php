@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id="deleteConfirm" type="button" class="btn btn-danger">">{{ __('Delete permanently') }}</button>
+          <button id="deleteConfirm" type="button" class="btn btn-danger">{{ __('Delete permanently') }}</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -27,7 +27,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="POST" action="{{ route('api.publisher.create') }}" autocomplete="off">
+    <form method="POST" action="{{ route('api.publishers.create') }}" autocomplete="off">
         @csrf
         <div class="card-body">
             <div class="form-group row">
@@ -67,11 +67,16 @@
                     <td>{{ $publisher->name }}</td>
                     <td>
                       @foreach ($publisher->books as $book)
-                        <a href="{{ route('book.index') }}" class="btn btn-outline-primary">{{ $book->title }}</a>
+                        <a href="{{ route('books.index') }}">{{ $book->title }}</a>
+                        {{ $loop->index + 1 === count($publisher->books) ? '' : ',' }}
+                        @if ($loop->index + 1 === 3 && $loop->index + 1 < count($publisher->books))
+                            {{ '...' }}
+                            @break
+                        @endif
                       @endforeach
                     </td>
                     <td>
-                        <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.publisher.delete', $publisher->id) }}" data-toggle="modal" data-target="#modal-default">
+                        <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.publishers.delete', $publisher->id) }}" data-toggle="modal" data-target="#modal-default">
                           <i class="fas fa-trash"></i> {{ __('Delete') }}
                         </div>
                     </td>

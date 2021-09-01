@@ -44,8 +44,9 @@ class BookController extends Controller
     {
         $publishers = $this->publisher->all();
         $categories = $this->category->all();
+        $authors = $this->author->all();
 
-        return view('book.create')->with(compact('publishers', 'categories'));
+        return view('book.create')->with(compact('publishers', 'categories', 'authors'));
     }
 
     /**
@@ -64,6 +65,7 @@ class BookController extends Controller
         $book->save();
         $book->refresh();
         $book->categories()->attach($request->categories);
+        $book->authors()->attach($request->authors);
 
         return $this->index();
     }
@@ -110,7 +112,7 @@ class BookController extends Controller
         $book->categories()->sync($request->categories);
         $book->save();
 
-        return redirect(route('book.index'));
+        return redirect(route('books.index'));
     }
 
     public function destroy($id)

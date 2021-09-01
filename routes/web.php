@@ -30,13 +30,13 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale');
 Route::prefix('admin')->group(function() {
     Route::middleware(['auth'])->group(function () {
-        Route::prefix('category')->group(function () {
-            Route::get('/', [CategoryController::class, 'index'])->name('category.index')->middleware('auth');
+        Route::prefix('categories')->group(function () {
+            Route::get('/', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');
         });
-        Route::prefix('publisher')->group(function () {
-            Route::get('/', [PublisherController::class, 'index'])->name('publisher.index')->middleware('auth');
+        Route::prefix('publishers')->group(function () {
+            Route::get('/', [PublisherController::class, 'index'])->name('publishers.index')->middleware('auth');
         });
-        Route::resource('book', BookController::class)->except(['destroy']);
-        Route::resource('author', AuthorController::class)->except(['destroy']);
+        Route::resource('books', BookController::class)->except(['destroy']);
+        Route::resource('authors', AuthorController::class)->except(['destroy']);
     });
 });

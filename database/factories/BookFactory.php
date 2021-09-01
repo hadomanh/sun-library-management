@@ -29,7 +29,9 @@ class BookFactory extends Factory
             // @ts-ignore
             'title' => ucwords($this->faker->words(3, true)),
             'number_of_pages' => rand($pages[0], $pages[1]),
-            'publisher_id' => Publisher::all()->map(fn ($publisher) => $publisher->id)->shuffle()->first(),
+            'publisher_id' => Publisher::all()->map(function ($publisher) {
+                return $publisher->id;
+            })->shuffle()->first(),
             'quantity' => rand($quantity[0], $quantity[1]),
         ];
     }

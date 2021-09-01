@@ -7,7 +7,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="POST" action="{{ route('author.update', $author->id) }}" autocomplete="off">
+    <form method="POST" action="{{ route('authors.update', $author->id) }}" autocomplete="off">
         @csrf
         @method('PUT')
         <div class="card-body">
@@ -23,7 +23,7 @@
                         </div>
 
                         <div class="col-2">
-                            <a href="{{ route('author.index') }}" class="btn btn-block btn-outline-secondary">Cancel</a>
+                            <a href="{{ route('authors.index') }}" class="btn btn-block btn-outline-secondary">Cancel</a>
                         </div>
                     </div>
                 </div>
@@ -32,14 +32,14 @@
                     <div class="form-group">
                         <label>Books:</label>
                         @foreach ($books as $book)
-                        <div class="custom-control custom-radio">
-                            @if ($author->book_id == $book->id)
-                                <input class="custom-control-input" type="radio" id="{{ 'customRadio' . $book->id }}" name="book_id" value="{{ $book->id }}" checked>
+                        <div class="custom-control custom-checkbox">
+                            @if (array_search($book->id, array_column($author->books->toArray(), 'id')) !== false)
+                                <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $book->id }}" name="books[]" value="{{ $book->id }}" checked>
                             @else
-                                <input class="custom-control-input" type="radio" id="{{ 'customRadio' . $book->id }}" name="book_id" value="{{ $book->id }}">
+                                <input class="custom-control-input" type="checkbox" id="{{ 'customCheckbox' . $book->id }}" name="books[]" value="{{ $book->id }}">
                             @endif
                             
-                            <label for="{{ 'customRadio' . $book->id }}" class="custom-control-label">{{ $book->title }}</label>
+                            <label for="{{ 'customCheckbox' . $book->id }}" class="custom-control-label">{{ $book->title }}</label>
                         </div>
                         @endforeach
                     </div>

@@ -94,7 +94,7 @@
                with font-awesome or any other icon font library -->
 
           <li class="nav-item">
-            <a href="{{ route('publisher.index') }}" class="nav-link">
+            <a href="{{ route('publishers.index') }}" class="nav-link">
               <i class="nav-icon fas fa-building"></i>
               <p>
                 {{ __('Publisher') }}
@@ -112,13 +112,13 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('book.index') }}" class="nav-link">
+                <a href="{{ route('books.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ __('View') }}</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('book.create') }}" class="nav-link">
+                <a href="{{ route('books.create') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>{{ __('Add') }}</p>
                 </a>
@@ -127,31 +127,16 @@
           </li>
 
           <li class="nav-item">
-            <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-book"></i>
+            <a href="{{ route('authors.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-box"></i>
               <p>
                 {{ __('Author') }}
-                <i class="right fas fa-angle-left"></i>
               </p>
             </a>
-            <ul class="nav nav-treeview">
-              <li class="nav-item">
-                <a href="{{ route('author.index') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{ __('View') }}</p>
-                </a>
-              </li>
-              <li class="nav-item">
-                <a href="{{ route('author.create') }}" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>{{ __('Add') }}</p>
-                </a>
-              </li>
-            </ul>
           </li>
 
           <li class="nav-item">
-            <a href="{{ route('category.index') }}" class="nav-link">
+            <a href="{{ route('categories.index') }}" class="nav-link">
               <i class="nav-icon fas fa-box"></i>
               <p>
                 {{ __('Category') }}

@@ -22,21 +22,21 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::prefix('category')->group(function () {
-    Route::post('/', [CategoryController::class, 'create'])->name('api.category.create');
-    Route::delete('/{id}', [CategoryController::class, 'delete'])->name('api.category.delete');
+Route::prefix('categories')->group(function () {
+    Route::post('/', [CategoryController::class, 'create'])->name('api.categories.create');
+    Route::delete('/{id}', [CategoryController::class, 'delete'])->name('api.categories.delete');
 });
 
-Route::prefix('publisher')->group(function () {
-    Route::post('/', [PublisherController::class, 'create'])->name('api.publisher.create');
-    Route::delete('/{id}', [PublisherController::class, 'delete'])->name('api.publisher.delete');
+Route::prefix('publishers')->group(function () {
+    Route::post('/', [PublisherController::class, 'create'])->name('api.publishers.create');
+    Route::delete('/{id}', [PublisherController::class, 'delete'])->name('api.publishers.delete');
 });
 
-Route::prefix('book')->group(function () {
-    Route::delete('/{id}', [BookController::class, 'destroy'])->name('api.book.destroy');
+Route::prefix('books')->group(function () {
+    Route::delete('/{id}', [BookController::class, 'destroy'])->name('api.books.destroy');
 });
 
-Route::prefix('author')->group(function () {
-    Route::delete('/{id}', [AuthorController::class, 'destroy'])->name('api.author.destroy');
+Route::prefix('authors')->group(function () {
+    Route::delete('/{id}', [AuthorController::class, 'destroy'])->name('api.authors.destroy');
 });
 

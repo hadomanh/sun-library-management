@@ -27,7 +27,7 @@
     </div>
     <!-- /.card-header -->
     <!-- form start -->
-    <form method="POST" action="{{ route('api.category.create') }}" autocomplete="off">
+    <form method="POST" action="{{ route('api.categories.create') }}" autocomplete="off">
         @csrf
         <div class="card-body">
             <div class="form-group row">
@@ -67,11 +67,16 @@
                     <td>{{ $category->name }}</td>
                     <td>
                       @foreach ($category->books as $book)
-                        <a href="{{ route('book.index') }}" class="btn btn-outline-primary">{{ $book->title }}</a>
+                        <a href="{{ route('books.index') }}">{{ $book->title }}</a>
+                        {{ $loop->index + 1 === count($category->books) ? '' : ',' }}
+                        @if ($loop->index + 1 === 3 && $loop->index + 1 < count($category->books))
+                            {{ '...' }}
+                            @break
+                        @endif
                       @endforeach
                     </td>
                     <td>
-                        <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.category.delete', $category->id) }}" data-toggle="modal" data-target="#modal-default">
+                        <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.categories.delete', $category->id) }}" data-toggle="modal" data-target="#modal-default">
                           <i class="fas fa-trash"></i> {{ __('Delete') }}
                         </div>
                     </td>

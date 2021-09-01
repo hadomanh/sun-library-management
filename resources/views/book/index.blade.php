@@ -12,7 +12,7 @@
         </div>
         <div class="modal-footer justify-content-between">
           <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Cancel') }}</button>
-          <button id="deleteConfirm" type="button" class="btn btn-danger">">{{ __('Delete permanently') }}</button>
+          <button id="deleteConfirm" type="button" class="btn btn-danger">{{ __('Delete permanently') }}</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -45,12 +45,12 @@
                 <td>{{ $book->number_of_pages}}</td>
                 <td>{{ $book->quantity }}</td>
                 <td>
-                  <a href="{{ route('book.edit', $book->id) }}" class="btn btn-outline-warning">
+                  <a href="{{ route('books.edit', $book->id) }}" class="btn btn-outline-warning">
                     <i class="fas fa-edit"></i> 
                     {{ __('Edit') }}
                   </a>
                   
-                  <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.book.destroy', $book->id) }}" data-toggle="modal" data-target="#modal-default">
+                  <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.books.destroy', $book->id) }}" data-toggle="modal" data-target="#modal-default">
                     <i class="fas fa-trash"></i> 
                     {{ __('Delete') }}
                   </div>
@@ -62,12 +62,12 @@
                     <p>
                       <b>{{ __('Categories') }}: </b>
                       @foreach ($book->categories as $category)
-                          <a href="{{ route('category.index') }}" class="btn btn-outline-primary">{{ $category->name }}</a>
+                          <a href="{{ route('categories.index') }}" class="btn btn-outline-primary">{{ $category->name }}</a>
                       @endforeach
                     <br><br>
                       <b>{{ __('Authors') }}: </b>
                       @foreach ($book->authors as $author)
-                          <a href="{{ route('author.index') }}" class="btn btn-outline-warning">{{ $author->name }}</a>
+                          <a href="{{ route('authors.index') }}" class="btn btn-outline-warning">{{ $author->name }}</a>
                       @endforeach
                     </p>
                 </td>
