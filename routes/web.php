@@ -20,15 +20,17 @@ use App\Http\Controllers\LocaleController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-
-Auth::routes();
+    return view('home');
+})->name('index');
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Auth::routes();
+
 Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale');
+
 Route::prefix('admin')->group(function() {
+    Route::get('/home', [App\Http\Controllers\HomeController::class, 'adminIndex'])->name('admin.home');
     Route::middleware(['auth'])->group(function () {
         Route::prefix('categories')->group(function () {
             Route::get('/', [CategoryController::class, 'index'])->name('categories.index')->middleware('auth');
