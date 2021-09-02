@@ -16,7 +16,7 @@ class PublisherController extends Controller
 
     public function index()
     {
-        $publishers = $this->publisher->all();
+        $publishers = $this->publisher->paginate(5);
 
         return view('publisher.index')->with(compact('publishers'));
     }

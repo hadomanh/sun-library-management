@@ -86,5 +86,9 @@
       </table>
     </div>
     <!-- /.card-body -->
+    <br>
+    <div class="ml-5">
+      @include('pagination.default', ['paginator' => $categories])
+    </div>
 </div>
 @endsection

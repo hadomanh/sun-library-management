@@ -38,64 +38,62 @@
 
         <div class="row">
           <div class="col-sm-4">
-            <!-- checkbox -->
             <div class="form-group">
-                <label>{{ __('Authors') }}:</label>
-
-                @foreach ($authors as $author)
-                    <div class="custom-control custom-checkbox">
-                      @if (array_search($author->id, array_column($book->authors->toArray(), 'id')) !== false)
-                        <input class="custom-control-input" type="checkbox" id="{{ 'authorCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}" checked>
-                      @else
-                        <input class="custom-control-input" type="checkbox" id="{{ 'authorCheckbox' . $author->id }}" name="authors[]" value="{{ $author->id }}">
-                      @endif
-                        <label for="{{ 'authorCheckbox' . $author->id }}" class="custom-control-label">{{ $author->name }}</label>
-                    </div>
-                @endforeach
+              <label>{{ __('Authors') }}:</label>
+              <div class="select2-indigo">
+                <select class="select2" name="authors[]" multiple="multiple" data-placeholder="Select authors" data-dropdown-css-class="select2-indigo" style="width: 100%;" required>
+                  @foreach ($authors as $author)
+                      <option
+                        value="{{ $author->id }}"
+                        {{ array_search($author->id, array_column($book->authors->toArray(), 'id')) !== false ? 'selected' : '' }}>
+                        {{ $author->name }}
+                      </option>
+                  @endforeach
+                </select>
+              </div>
             </div>
           </div>
 
           <div class="col-sm-4">
-            <!-- checkbox -->
             <div class="form-group">
-                <label>{{ __('Categories') }}:</label>
-
-                @foreach ($categories as $category)
-                    <div class="custom-control custom-checkbox">
-                      @if (array_search($category->id, array_column($book->categories->toArray(), 'id')) !== false)
-                        <input class="custom-control-input" type="checkbox" id="{{ 'categoryCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}" checked>
-                      @else
-                        <input class="custom-control-input" type="checkbox" id="{{ 'categoryCheckbox' . $category->id }}" name="categories[]" value="{{ $category->id }}">
-                      @endif
-                        <label for="{{ 'categoryCheckbox' . $category->id }}" class="custom-control-label">{{ $category->name }}</label>
-                    </div>
-                @endforeach
+              <label>{{ __('Categories') }}:</label>
+              <div class="select2-maroon">
+                <select class="select2" name="categories[]" multiple="multiple" data-placeholder="Select categories" data-dropdown-css-class="select2-maroon" style="width: 100%;" required>
+                  @foreach ($categories as $category)
+                      <option
+                        value="{{ $category->id }}"
+                        {{ array_search($category->id, array_column($book->categories->toArray(), 'id')) !== false ? 'selected' : '' }}>
+                        {{ $category->name }}
+                      </option>
+                  @endforeach
+                </select>
+              </div>
             </div>
           </div>
 
           <div class="col-sm-4">
-            <!-- radio -->
             <div class="form-group">
-                <label>{{ __('Publishers') }}:</label>
-
+              <label>{{ __('Publisher') }}</label>
+              <select name="publisher_id" class="form-control select2 select2-lightblue" data-dropdown-css-class="select2-lightblue" style="width: 100%;" required>
                 @foreach ($publishers as $publisher)
-                    <div class="custom-control custom-radio">
-                      @if ($book->publisher_id == $publisher->id)
-                        <input class="custom-control-input" type="radio" id="{{ 'customRadio' . $publisher->id }}" name="publisher_id" value="{{ $publisher->id }}" checked>
-                      @else
-                        <input class="custom-control-input" type="radio" id="{{ 'customRadio' . $publisher->id }}" name="publisher_id" value="{{ $publisher->id }}">
-                      @endif
-                        
-                        <label for="{{ 'customRadio' . $publisher->id }}" class="custom-control-label">{{ $publisher->name }}</label>
-                    </div>
+                    <option value="{{ $publisher->id }}" {{ $book->publisher_id == $publisher->id ? 'selected' : '' }}>{{ $publisher->name }}</option>
                 @endforeach
+              </select>
             </div>
+            <!-- /.form-group -->
           </div>
         </div>
+
 
         <div class="row">
             <div class="col-3"></div>
             <button class="btn btn-primary col-6" type="submit">{{ __('Submit') }}</button>
+        </div>
+
+        <br>
+        <div class="row">
+            <div class="col-3"></div>
+            <a class="btn btn-outline-secondary col-6" href="{{ route('books.index') }}">{{ __('Cancel') }}</a>
         </div>
 
       </form>

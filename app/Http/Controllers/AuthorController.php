@@ -23,7 +23,7 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        $authors = $this->author->all();
+        $authors = $this->author->paginate(5);
 
         return view('author.index')->with(compact('authors'));
     }
