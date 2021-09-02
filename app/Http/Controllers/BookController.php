@@ -30,7 +30,7 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = $this->book->all();
+        $books = $this->book->paginate(5);
 
         return view('book.index')->with(compact('books'));
     }
@@ -109,6 +109,7 @@ class BookController extends Controller
         $book->number_of_pages = $request->number_of_pages;
         $book->quantity = $request->quantity;
         $book->publisher_id = $request->publisher_id;
+        $book->authors()->sync($request->authors);
         $book->categories()->sync($request->categories);
         $book->save();
 

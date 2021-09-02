@@ -1,4 +1,10 @@
 window.addEventListener('load', () => {
+
+    //Initialize Select2 Elements
+    $('.select2').select2()
+})
+
+window.addEventListener('load', () => {
     handleDelete()
 
     document.getElementById('logout')?.addEventListener('click', (event) => {

@@ -76,6 +76,8 @@
           
         </tbody>
       </table>
+      <br>
+      @include('pagination.default', ['paginator' => $books])
     </div>
     <!-- /.card-body -->
   </div>
