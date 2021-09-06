@@ -30,6 +30,7 @@ Auth::routes();
 Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale');
 
 Route::resource('user', UserController::class)->only(['index', 'show', 'edit', 'update']);
+Route::resource('books', BookController::class)->only(['show']);
 
 Route::prefix('admin')->group(function() {
     Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
@@ -40,7 +41,7 @@ Route::prefix('admin')->group(function() {
         Route::prefix('publishers')->group(function () {
             Route::get('/', [PublisherController::class, 'index'])->name('publishers.index')->middleware('auth');
         });
-        Route::resource('books', BookController::class)->except(['destroy']);
+        Route::resource('books', BookController::class)->except(['destroy', 'show']);
         Route::resource('authors', AuthorController::class)->except(['destroy']);
     });
 });

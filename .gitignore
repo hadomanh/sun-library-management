@@ -15,4 +15,5 @@ yarn-error.log
 /.vscode
 /public/js/
 /public/css/
+/public/fonts/
 public/bower_components/

@@ -13,9 +13,6 @@ class BookSeeder extends Seeder
      */
     public function run()
     {
-        \App\Models\Book::factory(10)
-            ->hasAuthors(rand(1, 3))
-            ->hasCategories(rand(1, 3))
-            ->create();
+        \App\Models\Book::factory(10)->create();
     }
 }

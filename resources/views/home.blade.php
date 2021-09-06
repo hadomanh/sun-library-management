@@ -18,7 +18,9 @@
                     <tbody>
                         @foreach ($books as $book)
                             <tr data-widget="expandable-table" aria-expanded="false">
-                                <td>{{ $book->title }}</td>
+                                <td>
+                                    <a href="{{ route('books.show', ['book' => $book]) }}">{{ $book->title }}</a>
+                                </td>
                                 <td>
                                     @foreach ($book->authors as $author)
                                         {{ $author->name }}<br/>
