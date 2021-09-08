@@ -130,8 +130,17 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{ route('users.index') }}" class="nav-link">
+              <i class="nav-icon fas fa-user"></i>
+              <p>
+                {{ __('User') }}
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{ route('authors.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-box"></i>
+              <i class="nav-icon fas fa-user-shield"></i>
               <p>
                 {{ __('Author') }}
               </p>

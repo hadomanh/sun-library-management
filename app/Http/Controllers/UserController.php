@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Log;
 
 class UserController extends Controller
 {
+    private $user;
+
+    public function __construct(User $user) {
+        $this->user = $user;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,7 +23,18 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $users = $this->user->paginate(5);
+        
+        return view('user.admin.index')->with(compact('users'));
+    }
+
+    public function modify(User $user, Request $request)
+    {
+        $user->is_admin = $request->is_admin;
+        $user->is_blocked = $request->is_blocked;
+        $user->save();
+
+        return $this->index();
     }
 
     /**
@@ -27,7 +44,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('user.admin.create');
     }
 
     /**

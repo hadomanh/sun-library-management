@@ -48,5 +48,10 @@ Route::prefix('admin')->group(function() {
         });
         Route::resource('books', BookController::class)->except(['destroy', 'show']);
         Route::resource('authors', AuthorController::class)->except(['destroy']);
+        Route::resource('users', UserController::class)->except(['destroy']);
+
+        Route::prefix('users')->group(function () {
+            Route::get('/modify/{user}', [UserController::class, 'modify'])->name('users.modify');
+        });
     });
 });
