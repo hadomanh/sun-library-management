@@ -7,6 +7,9 @@ use App\Models\Book;
 use App\Models\Category;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use App\Http\Requests\BookFilterRequest;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
@@ -119,6 +122,53 @@ class BookController extends Controller
     public function destroy($id)
     {
         return $this->book->findOrFail($id)->delete();
+    }
 
+    public function filter(BookFilterRequest $request)
+    {
+        Log::info($request);
+        $builder = $this->book;
+
+        if (isset($request->title)) {
+            $builder = $builder->where('title', 'LIKE', '%' . $request->title . '%');
+        }
+
+        if (isset($request->publisher)) {
+            Log::info($request->publisher);
+            $builder = $builder->whereHas('publisher', function (Builder $builderPrime) use ($request) {
+                $builderPrime->where('name', 'LIKE', '%' . $request->publisher . '%');
+            });
+        }
+
+        if (isset($request->author)) {
+            $builder = $builder->whereHas('authors', function (Builder $builderPrime) use ($request) {
+                $builderPrime->where('name', 'LIKE', '%' . $request->author . '%');
+            });
+        }
+
+        if (isset($request->category)) {
+            $categories = explode(' ', strtolower($request->category));
+            foreach ($categories as $category) {
+                $builder = $builder->whereHas('categories', function (Builder $builderPrime) use ($category) {
+                    $builderPrime->where('name', $category);
+                });
+            }
+        }
+
+        if (isset($request->rating[0]) || isset($request->rating[1])) {
+            $rating = [$request->rating[0] ?: 1, $request->rating[1] ?: 5];
+            $builder = $builder->join('user_book', 'books.id', '=', 'user_book.book_id')
+                ->select('user_book.book_id', 'books.*')
+                ->selectRaw('avg(`rating`) as avg_rating')
+                ->groupBy('user_book.book_id')
+                ->havingRaw('avg_rating >= ? and avg_rating <= ?', $rating)
+                ->orderBy('books.id');
+        }
+
+        Log::info($builder->toSql(), $builder->getBindings());
+        $books = $builder->paginate(20)->appends(request()->except('page'));
+        Log::info($books);
+
+        return view('home', ['books' => $books]);
     }
 }

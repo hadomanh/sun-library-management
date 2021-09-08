@@ -31,6 +31,7 @@ Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('lo
 
 Route::resource('user', UserController::class)->only(['index', 'show', 'edit', 'update']);
 Route::resource('books', BookController::class)->only(['show']);
+Route::get('filter', [BookController::class, 'filter'])->name('books.filter');
 
 Route::prefix('admin')->group(function() {
     Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
