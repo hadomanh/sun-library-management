@@ -4,6 +4,7 @@ return [
     'books' => [
         'number_of_pages' => [50, 1500],
         'quantity' => [1, 10],
+        'rating' => [1, 5],
     ],
     'book_orders' => [
         'time' => [3, 14],

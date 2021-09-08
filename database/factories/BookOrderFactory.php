@@ -25,9 +25,7 @@ class BookOrderFactory extends Factory
         $time = config('seeders.book_orders.time', [3, 14]);
 
         return [
-            'user_id' => User::all()->map(function ($user) {
-                return $user->id;
-            })->shuffle()->first(),
+            'user_id' => User::all()->shuffle()->first()->id,
             'from' => now(),
             'to' => now()->addDays(rand($time[0], $time[1])),
             'status' => config('seeders.book_orders.status', 0),
