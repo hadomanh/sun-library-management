@@ -28,4 +28,8 @@ class Book extends Model
     {
         return $this->belongsToMany(User::class, 'user_book', 'book_id', 'user_id')->withPivot('rating', 'comment')->withTimestamps();
     }
+
+    public function orders() {
+        return $this->belongsToMany(BookOrder::class, 'book_order_list', 'book_id', 'order_id');
+    }
 }

@@ -89,6 +89,10 @@
                                     {{ __('Profile Information') }}
                                 </a>
 
+                                <a class="dropdown-item" href="{{ route('book_orders.index') }}">
+                                    {{ __('Book Orders') }}
+                                </a>
+
                                 <a id="logout" class="dropdown-item" href="{{ route('logout') }}">
                                     {{ __('Logout') }}
                                 </a>

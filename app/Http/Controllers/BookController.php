@@ -9,7 +9,6 @@ use App\Models\Publisher;
 use Illuminate\Http\Request;
 use App\Http\Requests\BookFilterRequest;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\Log;
 
 class BookController extends Controller
 {
@@ -126,7 +125,6 @@ class BookController extends Controller
 
     public function filter(BookFilterRequest $request)
     {
-        Log::info($request);
         $builder = $this->book;
 
         if (isset($request->title)) {
@@ -134,7 +132,6 @@ class BookController extends Controller
         }
 
         if (isset($request->publisher)) {
-            Log::info($request->publisher);
             $builder = $builder->whereHas('publisher', function (Builder $builderPrime) use ($request) {
                 $builderPrime->where('name', 'LIKE', '%' . $request->publisher . '%');
             });
@@ -165,9 +162,7 @@ class BookController extends Controller
                 ->orderBy('books.id');
         }
 
-        Log::info($builder->toSql(), $builder->getBindings());
         $books = $builder->paginate(20)->appends(request()->except('page'));
-        Log::info($books);
 
         return view('home', ['books' => $books]);
     }
