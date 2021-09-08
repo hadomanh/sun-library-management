@@ -1,14 +1,17 @@
 <?php
 
-use App\Http\Controllers\AuthorController;
-use App\Http\Controllers\BookController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\PublisherController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\{
+    AuthorController,
+    BookController,
+    CategoryController,
+    PublisherController,
+    UserController,
+    BookOrderController,
+    LocaleController,
+    HomeController,
+};
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LocaleController;
-use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,9 +24,7 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-})->name('index');
+Route::get('/', [HomeController::class, 'index'])->name('index');
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -32,6 +33,9 @@ Auth::routes();
 Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale');
 
 Route::resource('user', UserController::class)->only(['index', 'show', 'edit', 'update']);
+Route::resource('books', BookController::class)->only(['show']);
+Route::resource('book_orders', BookOrderController::class);
+Route::get('filter', [BookController::class, 'filter'])->name('books.filter');
 
 Route::prefix('admin')->group(function() {
     Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
@@ -42,7 +46,7 @@ Route::prefix('admin')->group(function() {
         Route::prefix('publishers')->group(function () {
             Route::get('/', [PublisherController::class, 'index'])->name('publishers.index')->middleware('auth');
         });
-        Route::resource('books', BookController::class)->except(['destroy']);
+        Route::resource('books', BookController::class)->except(['destroy', 'show']);
         Route::resource('authors', AuthorController::class)->except(['destroy']);
         Route::resource('users', UserController::class)->except(['destroy']);
 

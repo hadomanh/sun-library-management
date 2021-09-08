@@ -26,6 +26,10 @@ class Book extends Model
 
     public function ratingsAndComments()
     {
-        return $this->belongsToMany(User::class, 'user_book', 'book_id', 'user_id')->withTimestamps();
+        return $this->belongsToMany(User::class, 'user_book', 'book_id', 'user_id')->withPivot('rating', 'comment')->withTimestamps();
+    }
+
+    public function orders() {
+        return $this->belongsToMany(BookOrder::class, 'book_order_list', 'book_id', 'order_id');
     }
 }
