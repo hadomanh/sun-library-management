@@ -37,7 +37,7 @@ Route::resource('books', BookController::class)->only(['show']);
 Route::resource('book_orders', BookOrderController::class);
 Route::get('filter', [BookController::class, 'filter'])->name('books.filter');
 
-Route::prefix('admin')->group(function() {
+Route::prefix('admin')->middleware(['admin.only'])->group(function() {
     Route::get('/home', [HomeController::class, 'adminIndex'])->name('admin.home');
     Route::middleware(['auth'])->group(function () {
         Route::prefix('categories')->group(function () {
