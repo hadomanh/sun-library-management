@@ -30,6 +30,7 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Auth::routes();
 
+
 Route::get('/locale/{locale}', [LocaleController::class, 'setLocale'])->name('locale');
 
 Route::resource('user', UserController::class)->only(['index', 'show', 'edit', 'update']);
