@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col">
                 <fieldset disabled="disabled">
-                    <form method="POST" action="{{ route('user.update', ['user' => Auth::user()]) }}"
+                    <form method="POST" action="{{ route('book_orders.update', ['book_order' => $order]) }}"
                         enctype="multipart/form-data">
                         @method('PATCH')
                         @csrf

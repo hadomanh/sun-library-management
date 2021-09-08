@@ -197,7 +197,7 @@
     "Add Word": "Thêm từ",
     "Edit Collection": "Sửa nhóm",
     "Edit Word": "Sửa từ",
-    "Title": "Tiêu đề",
+    "Author": "Tác giả",
     "Authors": "Tác giả",
     "Publishers": "Nhà xuất bản",
     "Categories": "Thể loại",
@@ -226,7 +226,6 @@
     "Grant Admin": "Gán quyền quản trị",
     "Block": "Chặn",
     "Unblock": "Bỏ chặn",
-    "Author": "Tác giả",
     "Category": "Thể loại",
     "View": "Xem danh sách"
 }
