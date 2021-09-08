@@ -12,8 +12,8 @@
         <thead>
           <tr>
             <th style="width: 10px">#</th>
-            <th>Name</th>
-            <th>Email</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('Email') }}</th>
             <th></th>
           </tr>
         </thead>

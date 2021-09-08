@@ -5,13 +5,13 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Confirm delete?</h4>
+          <h4 class="modal-title">{{ __('Confirm delete') }}?</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Cancel') }}</button>
           <button id="deleteConfirm" type="button" class="btn btn-danger">{{ __('Delete permanently') }}</button>
         </div>
       </div>
@@ -23,7 +23,7 @@
 
 <div class="card card-primary">
   <div class="card-header">
-    <h3 class="card-title">Create Author</h3>
+    <h3 class="card-title">{{ __('Create Author') }}</h3>
   </div>
   <!-- /.card-header -->
   <!-- form start -->
@@ -38,7 +38,7 @@
             </div>
 
             <div class="col-3">
-              <button type="submit" class="btn btn-block btn-primary">Submit</button>
+              <button type="submit" class="btn btn-block btn-primary">{{ __('Submit') }}</button>
             </div>
           </div>
         </div>
@@ -60,8 +60,8 @@
         <thead>
           <tr>
             <th style="width: 10px">#</th>
-            <th>Name</th>
-            <th>Book</th>
+            <th>{{ __('Name') }}</th>
+            <th>{{ __('Book') }}</th>
             <th></th>
           </tr>
         </thead>
@@ -82,10 +82,10 @@
                     </td>
                     <td>
                       <a class="btn btn-outline-warning" href="{{ route('authors.edit', $author->id) }}">
-                        <i class="fas fa-edit"></i> Edit
+                        <i class="fas fa-edit"></i> {{ __('Edit') }}
                       </a>
                       <div class="btn btn-outline-danger deleteItemBtn" data-url="{{ route('api.authors.destroy', $author->id) }}" data-toggle="modal" data-target="#modal-default">
-                        <i class="fas fa-trash"></i> Delete
+                        <i class="fas fa-trash"></i> {{ __('Delete') }}
                       </div>
                     </td>
                 </tr>

@@ -5,14 +5,14 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h4 class="modal-title">Confirm delete?</h4>
+          <h4 class="modal-title">{{ __('Confirm delete') }}?</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-          <button id="deleteConfirm" type="button" class="btn btn-danger">">{{ __('Delete permanently') }}</button>
+          <button type="button" class="btn btn-default" data-dismiss="modal">{{ __('Cancel') }}</button>
+          <button id="deleteConfirm" type="button" class="btn btn-danger">{{ __('Delete permanently') }}</button>
         </div>
       </div>
       <!-- /.modal-content -->
@@ -23,7 +23,7 @@
 
   <div class="card card-primary">
     <div class="card-header">
-      <h3 class="card-title">Create category</h3>
+      <h3 class="card-title">{{ __('Create category') }}</h3>
     </div>
     <!-- /.card-header -->
     <!-- form start -->
